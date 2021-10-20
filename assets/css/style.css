@@ -17,6 +17,7 @@ html {
 }
 
 body {
+  overflow: hidden;
   background: rgb(var(--bg));
   background-position-x: top;
   background-position-y: right;

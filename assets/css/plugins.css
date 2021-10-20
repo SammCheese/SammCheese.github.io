@@ -53,6 +53,12 @@
   }
 }
 
+@media screen and (max-width: 1150px), (max-height: 870px) {
+  body {
+    overflow: visible !important;
+  }
+}
+
 .plugin-box-header {
   display: flex;
   flex-direction: column;
