@@ -2,12 +2,13 @@
 @import "socials.css";
 
 :root {
-  --bg: 22, 22, 22; /* Dark gray */
+  --bg: 17, 18, 19; /* Dark gray */
   --fg: 211, 211, 211; /* Light gray */
 }
 
 body,
 html {
+  font-family: "Open Sans", sans-serif;
   font-size: 100%;
   height: 100%;
   width: 100%;
@@ -38,6 +39,18 @@ body {
   color: rgb(var(--fg));
   animation: fadeInMenu 1s;
   /*filter: blur(20px);*/
+}
+
+@media screen and (max-width: 768px) {
+  #menu-items {
+    top: 50vh;
+    left: 45vw;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  #footer {
+    display: none;
+  }
 }
 
 #menu-items li {

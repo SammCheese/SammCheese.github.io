@@ -14,3 +14,5 @@ function navigate(menuItems, page) {
   }, 900);
   return;
 }
+
+setTimeout(() => document.querySelector(".darkreader") && alert("pls disable darkreader :>"), 1000);

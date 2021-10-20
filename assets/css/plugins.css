@@ -38,7 +38,7 @@
 
 #back img {
   animation: fadeInPlugins;
-  animation-duration: 4s;
+  animation-duration: 3s;
   position: absolute;
   top: 5%;
   left: 2%;
@@ -46,7 +46,7 @@
 
 @media screen and (max-width: 900px) {
   .plugin-collection {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: auto;
   }
   .plugin-box-header {
       height: auto;
@@ -65,6 +65,7 @@
 }
 
 .plugin-box-title {
+  overflow-wrap: anywhere;
   display: flex;
   flex-direction: column;
   height: 30%;
