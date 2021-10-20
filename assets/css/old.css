@@ -1,5 +1,6 @@
+
 :root {
-  --wallpaper: url(assets/background-image.jpg);
+  --wallpaper: url(../images/background-image.jpg);
   --bg: 22, 22, 22; /* Dark gray */
   --fg: 211, 211, 211; /* Light gray */
 }
@@ -43,6 +44,11 @@ a img {
   width: 60px;
   height: 60px;
   margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--fg);
 }
 
 a img:hover {

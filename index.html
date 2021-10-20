@@ -2,44 +2,33 @@
 
 <html lang="en">
   <head>
+    <title>Samm-Cheese</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Samm's Website</title>
-    <meta name="description" content="Sammy's Website!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <meta name="descrsssiption" content="Sammy's Website!" />
     <meta name="author" content="SammCheese" />
-    <link
-      rel="shortcut icon"
-      href="https://github.com/SammCheese.png?size=256"
-    />
-    <link rel="stylesheet" href="style.css" />
+    <meta name="og:type" content="website">
+    <meta name="og:title" content="Sammy's Website">
+    <meta name="og:description" content="Sammy's Website!">
+    <meta name="og:url" content="https://sammcheese.xyz">
+    <meta name="og:image" content="http://sammycheese.com/images/logo.png">
+    <link rel="shortcut icon" href="https://github.com/SammCheese.png?size=256" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script type="text/javascript" src="./assets/js/scripts.js"></script>
   </head>
 
   <body>
     <div id="filter">
-      <div id="box">
-        <h1>SammCheese</h1>
-        <img id="avatar" src="https://github.com/SammCheese.png?size=256" />
-        <p>
-          Hi, I'm Sammy! Welcome to my small Website
-          (which i totally didnt steel from Vendicated)
-        </p>
-        <div id="socials">
-          <h3>Contact Me!</h3>
-          <a href="https://discord.com/users/372148345894076416">
-            <img src="assets/discord.svg" />
-            <span>SammCheese#9500</span>
-          </a>
-          <a href="https://github.com/SammCheese">
-            <img src="assets/github.svg" />
-            <span>Github</span>
-          </a>
-          <a href="mailto:SammCheese.github%20&lt;SammCheese.github@gmail.com&gt;">
-            <img src="assets/email.svg" />
-            <span>Email me</span>
-          </a>
-        </div>
-      </div>
+      <section class="page " id="menu">
+          <div>
+            <ul id='menu-items'>
+                <li id="menu-item-socials" class="menu-item"><a href="#" onclick="return navigate('#menu','socials.html')">Socials</a></li>
+                <li id="menu-item-plugins" class="menu-item"><a href="#" onclick="return navigate('#menu','plugins.html')">Discord Plugins</a></li>
+                <li id="menu-item-old" class="menu-item"><a href="#" onclick="return navigate('#menu','old.html')">Old Website</a></li>
+              </ul>
+            </div>
+        </section>
     </div>
   </body>
+  <footer id="footer">Copyright (C) 2021 SammCheese</footer>
 </html>

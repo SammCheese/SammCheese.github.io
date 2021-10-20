@@ -1,0 +1,92 @@
+@import "plugins.css";
+@import "socials.css";
+
+:root {
+  --bg: 22, 22, 22; /* Dark gray */
+  --fg: 211, 211, 211; /* Light gray */
+}
+
+body,
+html {
+  font-size: 100%;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: rgb(var(--bg));
+  background-position-x: top;
+  background-position-y: right;
+}
+
+@keyframes fadeInMenu {
+  from {opacity: 0;top: 45%}
+  to {top: 50%;opacity: 1;}
+}
+
+#menu-items {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  color: rgb(var(--fg));
+  animation: fadeInMenu 1s;
+  /*filter: blur(20px);*/
+}
+
+#menu-items li {
+  padding: 6px 0;
+}
+
+#menu-items li a {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  font-size: 28px;
+  color: rgb(var(--fg));
+  padding: 10px 0;
+  transition: 0.5s;
+}
+
+#menu-items li a::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3px;
+  top: 100%;
+  left: 0;
+  background: yellow;
+  transition: transform 0.5s;
+  transform: scaleX(0);
+  transform-origin: center;
+  box-shadow: 0px 0px 6px 2px rgba(224, 226, 80, 0.5);
+}
+
+#menu-items li a:hover {
+  color: yellow;
+}
+
+#menu-items li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+h3 {
+  text-decoration: underline;
+}
+
+#footer {
+  text-align: center;
+  position: absolute;
+  transform: translate(-50%);
+  bottom: 4px;
+  left: 51%;
+  color: rgb(var(--fg));
+  font-size: 14px;
+}

@@ -1,0 +1,111 @@
+@keyframes fadeInPlugins {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#plugins {
+  font: 1em 'Roboto', sans-serif;
+}
+
+.plugin-collection {
+  margin: 5%;
+  animation: fadeInMenu;
+  animation-duration: 2s;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 1em;
+}
+
+.plugin-box {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.page#plugins h1 {
+  font-size: xx-large;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+#back img {
+  animation: fadeInPlugins;
+  animation-duration: 4s;
+  position: absolute;
+  top: 5%;
+  left: 2%;
+}
+
+@media screen and (max-width: 900px) {
+  .plugin-collection {
+      grid-template-columns: minmax(0, 1fr);
+  }
+  .plugin-box-header {
+      height: auto;
+  }
+}
+
+.plugin-box-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  position: relative;
+  background-color: #4450d1;
+}
+
+.plugin-box-title {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: center;
+  text-align: center;
+  color: whitesmoke;
+}
+
+.plugin-box-spacer {
+  margin-left: 1.5em;
+}
+
+.plugin-box-linker {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5em;
+  fill: rgb(255, 255, 255);
+  transition: 0.2s fill;
+}
+
+.plugin-box-linker > h3 {
+  fill: darkslategray;
+  transition: 0.2s fill;
+}
+
+.plugin-box-body {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  position: relative;
+  color: whitesmoke;
+  background-color: #5865f2;
+}
+
+.plugin-box {
+  background-color: rgb(var(--bg));
+}
