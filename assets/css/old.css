@@ -13,6 +13,26 @@ html {
   padding: 0;
 }
 
+@keyframes fadeInPlugins {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#back img {
+  animation: fadeInPlugins;
+  animation-duration: 3s;
+  position: absolute;
+  top: 5%;
+  left: 2%;
+}
+
 #filter {
   display: flex;
   background: rgba(var(--bg), 0, 3);

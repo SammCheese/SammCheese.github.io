@@ -1,4 +1,85 @@
 .page#socials {
-  text-align: center;
+  animation: fadeInPlugins;
+  animation-duration: 1s;
   color: white
+}
+
+@keyframes pulsatingGlow {
+  0% {
+    box-shadow: 0 0 10px gold;
+  }
+  50% {
+    box-shadow: 0 0 30px gold;
+  }
+  100% {
+    box-shadow: 0 0 10px gold;
+  }
+}
+
+
+
+.main, h1, h2 {
+  text-align: center;
+}
+
+#main-image {
+  animation: pulsatingGlow;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+#name {
+  position: relative;
+  font-size: 0.7em;
+  font-weight: bold;
+  top: -1px;
+}
+
+#funny {
+  position: relative;
+  top: -5px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.social-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(38, 46, 53);
+  min-width: 20%;
+  min-height: 20%;
+  border-radius: 8px;
+  margin: 5%;
+}
+
+.social-item {
+  margin: 1%;
+}
+
+.social-item a {
+  margin: 5px;
+  text-decoration: none;
+}
+
+.social-item a span {
+  visibility: hidden;
+
+  position: absolute;
+  margin-left: 0;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: black;
+  color: rgb(var(--fg));
+}
+
+.social-item a:hover span {
+  visibility: visible;
+}
+
+#yes {
+  text-align: center;
 }
