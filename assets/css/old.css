@@ -27,7 +27,7 @@ html {
 
 #back img {
   animation: fadeInPlugins;
-  animation-duration: 3s;
+  animation-duration: 1.5s;
   position: absolute;
   top: 5%;
   left: 2%;

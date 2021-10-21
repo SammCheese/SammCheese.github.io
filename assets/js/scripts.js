@@ -7,10 +7,10 @@ function navigate(menuItems, page) {
   document.querySelector(menuItems).animate([
     { opacity: 1 },
     { opacity: 0 }
-  ], 1000)
+  ], 500)
   setTimeout(() => {
     window.location.href = page;
-  }, 800);
+  }, 300);
   return;
 }
 
