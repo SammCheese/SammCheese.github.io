@@ -16,5 +16,3 @@ async function navigate(menuItems, page) {
   }, 400)
   return;
 }
-
-setTimeout(() => document.querySelector(".darkreader") && alert("pls disable darkreader :>"), 1000);
