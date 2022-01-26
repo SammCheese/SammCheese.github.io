@@ -24,8 +24,8 @@ body {
 }
 
 @keyframes fadeInMenu {
-  from {opacity: 0;top: 45%}
-  to {top: 50%;opacity: 1;}
+  from {opacity: 0; top: 45vh}
+  to {top: 50vh; opacity: 1;}
 }
 
 #menu-items {
@@ -44,7 +44,6 @@ body {
 
 @media screen and (max-width: 768px) {
   #menu-items {
-    top: 50vh;
     left: 45vw;
     transform: translate(-50%, -50%);
     text-align: center;
