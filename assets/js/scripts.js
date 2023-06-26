@@ -11,8 +11,5 @@ async function navigate(menuItems, page) {
   setTimeout(() => {
     window.location.href = page;
   }, 300);
-  setTimeout(() => {
-    document.querySelector(menuItems).style.display = "none";
-  }, 400)
   return;
 }
