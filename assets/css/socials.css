@@ -49,7 +49,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(var(--bg));
+  background-color: rgb(var(--bg, #111213));
   min-width: 20%;
   min-height: 20%;
   border-radius: 8px;
@@ -73,7 +73,7 @@
   padding: 12px;
   border-radius: 10px;
   background-color: black;
-  color: rgb(var(--fg));
+  color: rgb(var(--fg, #D3D3D3));
 }
 
 .social-item a:hover span {

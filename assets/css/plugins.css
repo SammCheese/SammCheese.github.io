@@ -114,5 +114,5 @@
 }
 
 .plugin-box {
-  background-color: rgb(var(--bg));
+  background-color: rgb(var(--bg, #111213));
 }
