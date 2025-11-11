@@ -1,4 +1,4 @@
-@import "plugins.css";
+@import "projects.css";
 @import "socials.css";
 
 :root {
@@ -38,7 +38,7 @@ body {
   left: 50vw;
   transform: translate(-50%, -50%);
   color: rgb(var(--fg, #D3D3D3));
-  animation: fadeInMenu 1s;
+  animation: fadeInMenu 0.5s ease-in-out;
   /*filter: blur(20px);*/
 }
 
@@ -90,9 +90,7 @@ body {
   transform-origin: center;
 }
 
-h3 {
-  text-decoration: underline;
-}
+
 
 #footer {
   text-align: center;
