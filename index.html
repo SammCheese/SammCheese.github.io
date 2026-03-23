@@ -1,35 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
   <head>
     <title>Samm-Cheese</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
+    />
     <meta name="description" content="Hi, This is my Website!" />
     <meta name="author" content="SammCheese" />
-    <meta name="og:type" content="website">
-    <meta name="og:title" content="Sammy's Website">
-    <meta name="og:description" content="Hi, This is my Website!">
-    <meta name="og:url" content="https://sammcheese.net">
-    <meta name="og:image" content="https://github.com/SammCheese.png">
-    <link rel="shortcut icon" href="https://github.com/SammCheese.png?size=256" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <script type="text/javascript" src="./assets/js/scripts.js"></script>
+    <meta name="og:type" content="website" />
+    <meta name="og:title" content="Sammy's Website" />
+    <meta name="og:description" content="Hi, This is my Website!" />
+    <meta name="og:url" content="https://sammcheese.net" />
+    <meta name="og:image" content="https://github.com/SammCheese.png" />
+    <link
+      rel="shortcut icon"
+      href="https://github.com/SammCheese.png?size=256"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script type="text/javascript" src="/assets/js/scripts.js"></script>
   </head>
 
   <body>
-    <div id="filter">
-      <section class="page " id="menu">
-          <div>
-            <ul id='menu-items'>
-                <li id="menu-item-socials" class="menu-item"><a href="#" onclick="return navigate('#menu','socials.html')">About Me</a></li>
-                <li id="menu-item-projects" class="menu-item"><a href="#" onclick="return navigate('#menu','projects.html')">Projects</a></li>
-                <li id="menu-item-contributions" class="menu-item"><a href="#" onclick="return navigate('#menu','contributions.html')">Contributions</a></li>
-                <li id="menu-item-old" class="menu-item"><a href="#" onclick="return navigate('#menu','old.html')">Old Website</a></li>
-              </ul>
+    <div id="content">
+      <template id="current-template">
+        <!-- Imagine the Possibilities, Stanley...  -->
+      </template>
+    </div>
+    <div id="footer-container">
+      <template id="footer-template">
+        <div id="discord-container">
+          <div id="discord-pfp-container">
+            <div id="discord-pfp">
+              <img src="" id="discord-pfp-img" loading="lazy" />
+              <p id="discord-indicator"></p>
             </div>
-        </section>
+          </div>
+          <div id="discord-body">
+            <p id="discord-username"></p>
+            <p id="discord-activity"></p>
+            <p id="discord-status"></p>
+          </div>
+        </div>
+      </template>
+      <footer id="footer">Copyright (C) 2026 SammCheese</footer>
     </div>
   </body>
-  <footer id="footer">Copyright (C) 2025 SammCheese</footer>
 </html>

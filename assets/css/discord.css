@@ -1,0 +1,83 @@
+#discord-container {
+  display: grid;
+  user-select: none;
+  grid-template-columns: 80px auto;
+  padding: 0 10px;
+  margin: 0 10px;
+  background-color: rgba(123, 68, 225, 0.2);
+  outline: 1px solid rgb(var(--fg, #35105d));
+  box-shadow: 0 0 10px rgb(var(--fg, #9d2c2c));
+  border-radius: 8px;
+  height: 80px;
+  position: relative;
+  margin-bottom: 10px;
+  width: min(600px, 60%);
+  align-self: center;
+}
+
+#discord-body {
+  height: 80px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#discord-pfp-container {
+  height: 80px;
+  width: 100%;
+  align-content: center;
+}
+
+#discord-pfp {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+}
+
+#discord-pfp-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+#discord-indicator {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 3px solid rgb(var(--fg, #d3d3d3));
+}
+
+#discord-username {
+  font-size: 1em;
+  color: rgb(var(--fg, #d3d3d3));
+  font-weight: bold;
+  padding: 0 !important;
+}
+
+#discord-activity {
+  font-size: 0.9em;
+  color: rgb(var(--fg, #d3d3d3));
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#discord-status {
+  font-size: 0.8em;
+}
+
+.indicator.online {
+  background-color: rgb(67, 181, 129);
+}
+.indicator.idle {
+  background-color: rgb(250, 166, 26);
+}
+.indicator.dnd {
+  background-color: rgb(240, 71, 71);
+}
