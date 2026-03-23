@@ -47,7 +47,7 @@ body {
 
 @media screen and (max-width: 768px) {
   #menu-items {
-    left: 45vw;
+    left: 45dvw;
     transform: translate(-50%, -50%);
     text-align: center;
   }
@@ -99,7 +99,7 @@ body {
 
 #content {
   position: relative;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100dvh - 120px);
   height: 100%;
   display: flex;
   flex-direction: column;
