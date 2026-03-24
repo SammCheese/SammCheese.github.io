@@ -1,7 +1,7 @@
 .page#socials {
   animation: fadeInProjects;
   animation-duration: 0.7s;
-  color: white
+  color: white;
 }
 
 @keyframes pulsatingGlow {
@@ -16,9 +16,9 @@
   }
 }
 
-
-
-.main, h1, h2 {
+#socials .main,
+#socials h1,
+#socials h2 {
   text-align: center;
 }
 
@@ -26,6 +26,9 @@
   animation: pulsatingGlow;
   animation-duration: 6s;
   animation-iteration-count: infinite;
+  width: min(256px, 70vw);
+  height: auto;
+  border-radius: 50%;
 }
 
 #name {
@@ -47,21 +50,28 @@
 
 .social-box {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: rgb(var(--bg, #111213));
-  min-width: 20%;
-  min-height: 20%;
+  gap: 0.75rem;
+  background-color: rgb(var(--bg, 17, 18, 19));
+  width: min(700px, 92vw);
+  min-height: 80px;
   border-radius: 8px;
-  margin: 5%;
+  margin: 1.5rem auto;
+  padding: 0.5rem;
 }
 
 .social-item {
-  margin: 1%;
+  margin: 0;
 }
 
 .social-item a {
-  margin: 5px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   text-decoration: none;
 }
 
@@ -73,9 +83,21 @@
   padding: 12px;
   border-radius: 10px;
   background-color: black;
-  color: rgb(var(--fg, #D3D3D3));
+  color: rgb(var(--fg, 211, 211, 211));
 }
 
 .social-item a:hover span {
   visibility: visible;
+}
+
+@media screen and (max-width: 768px) {
+  #funny {
+    font-size: 1.2em;
+  }
+
+  .social-box {
+    width: min(700px, 95vw);
+    margin: 1rem auto;
+    padding: 0.75rem;
+  }
 }

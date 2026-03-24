@@ -2,31 +2,33 @@
 @import "socials.css";
 @import "discord.css";
 
+@font-face {
+  font-family: "Sakura";
+  src: url("/assets/fonts/Sakura.woff2") format("woff2");
+  text-rendering: optimizeLegibility;
+}
+
 :root {
   --bg: 17, 18, 19; /* Dark gray */
   --fg: 211, 211, 211; /* Light gray */
 }
 
-body,
-html {
+body {
   font-family: "Open Sans", sans-serif;
   font-size: 100%;
-}
-
-body {
   position: relative;
   padding: 0;
   margin: 0;
-  background-color: rgb(var(--bg, #111213));
+  background-color: rgb(var(--bg, 17, 18, 19));
 }
 
 @keyframes fadeInMenu {
   from {
     opacity: 0;
-    top: 45vh;
+    top: 45dvh;
   }
   to {
-    top: 50vh;
+    top: 50dvh;
     opacity: 1;
   }
 }
@@ -37,19 +39,26 @@ body {
   flex-direction: column;
   align-items: center;
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: max-content;
   top: 50dvh;
-  left: 50dvw;
+  left: 50%;
   transform: translate(-50%, -50%);
-  color: rgb(var(--fg, #d3d3d3));
+  color: rgb(var(--fg, 211, 211, 211));
   animation: fadeInMenu 0.5s ease-in-out;
   /*filter: blur(20px);*/
 }
 
 @media screen and (max-width: 768px) {
   #menu-items {
-    left: 45dvw;
+    left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+  }
+
+  #menu-items li a {
+    font-size: 24px;
   }
 }
 
@@ -62,7 +71,7 @@ body {
   display: block;
   text-decoration: none;
   font-size: 28px;
-  color: rgb(var(--fg, #d3d3d3));
+  color: rgb(var(--fg, 211, 211, 211));
   padding: 10px 0;
   transition: 0.5s;
 }
@@ -93,20 +102,19 @@ body {
 #footer {
   text-align: center;
   position: relative;
-  color: rgb(var(--fg, #d3d3d3));
+  color: rgb(var(--fg, 211, 211, 211));
   font-size: 14px;
 }
 
 #content {
   position: relative;
-  min-height: calc(100dvh - 120px);
+  min-height: calc(100dvh - 100px);
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 #footer-container {
-  padding-top: 10px;
   position: relative;
   bottom: 0;
   height: fit-content;
@@ -121,9 +129,4 @@ body {
   animation: fadeInMenu 0.5s ease-in-out;
   width: 100%;
   height: 100%;
-}
-
-#discord-status {
-  color: rgb(var(--fg, #d3d3d3));
-  font-size: 14px;
 }

@@ -1,5 +1,6 @@
 const API = "https://api.lanyard.rest/v1/users/372148345894076416";
-
+const DISCORD_COLLECTIBLES_API =
+  "https://cdn.discordapp.com/assets/collectibles/";
 const pages = {
   socials: "/templates/socials.html",
   projects: "/templates/projects.html",
@@ -55,48 +56,164 @@ const resetInterval = () => {
   interval = setInterval(refreshDiscordStatus, 60000);
 };
 
-const refreshDiscordStatus = () => {
-  const data = fetch(API)
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error("Error fetching Discord status:", error);
-      return null;
-    });
+const refreshDiscordStatus = async () => {
+  try {
+    const response = await fetch(API);
+    const result = await response.json();
 
-  data.then((data) => {
-    if (!data || !data.data) {
+    if (!result || !result.data) {
       console.error("Invalid data received from API");
       return;
     }
-  });
-  data.then((data) => {
-    updateDiscordHtml(data.data);
-  });
+
+    updateDiscordHtml(result.data);
+  } catch (error) {
+    console.error("Error fetching Discord status:", error);
+  }
+};
+
+const activityTypes = {
+  0: "Playing",
+  1: "Streaming",
+  2: "Listening to",
+  3: "Watching",
+  4: "Custom Status",
+  5: "Competing in",
 };
 
 const updateDiscordHtml = (data) => {
-  const template = document.getElementById("footer-template");
-  if (!template) {
-    console.error("Footer template not found");
+  if (!data) {
+    console.error("No data");
     return;
   }
+  const container = document.querySelector("#discord-container");
+  replaceData(container, data);
+};
 
-  const clone = template.content.cloneNode(true);
-  clone.querySelector("#discord-pfp-img").src =
-    `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.png?size=256`;
-  clone.querySelector("#discord-indicator").className =
-    `indicator ${data.discord_status}`;
-
-  clone.querySelector("#discord-activity").textContent = makeActivityString(
-    data.activities,
+const replaceData = (elem, data) => {
+  const { activities, discord_status, discord_user } = data;
+  const discordStatus = makeStatusString(
+    activities,
+    discord_status,
+    discord_user.global_name,
   );
-  clone.querySelector("#discord-username").textContent =
-    `${data.discord_user.display_name}`;
-  template.parentNode.replaceChild(clone, template);
+  const avatarUrl = `https://cdn.discordapp.com/avatars/${discord_user.id}/${discord_user.avatar}.png?size=256`;
+
+  // Add animated nameplate
+  let video = elem.querySelector("#nameplate-video");
+  if (discord_user?.collectibles?.nameplate) {
+    const animated = `${DISCORD_COLLECTIBLES_API}${discord_user.collectibles.nameplate.asset}asset.webm`;
+
+    if (!video) {
+      video = document.createElement("video");
+      video.src = animated;
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.style.position = "absolute";
+      video.style.top = 0;
+      video.style.left = 0;
+      video.style.width = "100%";
+      video.style.height = "100%";
+      video.style.objectFit = "cover";
+      video.style.zIndex = -1;
+      video.style.borderRadius = "8px";
+      video.id = "nameplate-video";
+      elem.appendChild(video);
+    } else {
+      video.src = animated;
+    }
+  } else if (video) {
+    video.remove();
+  }
+
+  // Set profile picture and status indicator
+  elem.querySelector("#discord-pfp-img").src = avatarUrl;
+  elem.querySelector("#discord-indicator").className =
+    `indicator ${data.discord_status}`;
+  // Online/Idle/DND/Offline status on hover
+  elem.querySelector("#discord-indicator").title = discord_status;
+  // Status text
+  elem.querySelector("#discord-activity").textContent = discordStatus;
+  // Activity image and title
+  elem.querySelector("#activity-image").replaceChildren(
+    (() => {
+      const activityImage = getActivityDetails(data.activities);
+      const parent = document.createElement("div");
+      parent.style.position = "relative";
+      if (!activityImage) return parent;
+      const img = document.createElement("img");
+      img.src = activityImage.url;
+      img.title = activityImage.title;
+      img.style.maxWidth = "56px";
+      img.style.maxHeight = "56px";
+      img.style.borderRadius = "8px";
+      img.style.position = "relative";
+      parent.appendChild(img);
+      if (!activityImage.smallUrl) return parent;
+      const smallImg = document.createElement("img");
+      smallImg.src = activityImage.smallUrl;
+      smallImg.title = activityImage.smallTitle;
+      smallImg.style.maxWidth = "24px";
+      smallImg.style.maxHeight = "24px";
+      smallImg.style.borderRadius = "50%";
+      smallImg.style.bottom = "0";
+      smallImg.style.right = "-6px";
+      smallImg.style.position = "absolute";
+      parent.appendChild(smallImg);
+      return parent;
+    })(),
+  );
+  // Username and global name
+  elem.querySelector("#discord-username").textContent =
+    discord_user.display_name;
+  elem.querySelector("#discord-username").title = discord_user.username;
+
+  return elem;
+};
+
+const getActivityDetails = (activities) => {
+  if (!activities.length) return null;
+
+  const target = activities.find((a) => a.assets && a.assets.large_image);
+  if (!target) return null;
+
+  const largeImage = target.assets.large_image;
+
+  const baseUrl = largeImage.startsWith("mp:external/")
+    ? `https://media.discordapp.net/external/${largeImage.substring(12)}`
+    : `https://cdn.discordapp.com/app-assets/${target.application_id}/${largeImage}.png`;
+
+  const result = {
+    url: baseUrl,
+    title: target.assets.large_text || "",
+  };
+
+  if (target.assets.small_image) {
+    const smallImage = target.assets.small_image;
+    result.smallUrl = smallImage.startsWith("mp:external/")
+      ? `https://media.discordapp.net/external/${smallImage.substring(12)}`
+      : `https://cdn.discordapp.com/app-assets/${target.application_id}/${smallImage}.png`;
+    result.smallTitle = target.assets.small_text || "";
+  }
+
+  return result;
+};
+
+const makeStatusString = (activities, status, state) => {
+  if (activities.length) return makeActivityString(activities);
+  if (status === "dnd") return "Do Not Disturb";
+  if (status === "idle") return "Idle";
+  if (status === "offline") return "Offline";
+  return state || "online";
 };
 
 const makeActivityString = (activities) => {
-  if (activities.length === 0) return "No activity";
-  if (activities.length === 1) return activities[0].name;
-  return `${activities[0].name} +${activities.length - 1}`;
+  const activity = `${activities[0]?.id === "custom" ? activities[0].state : activities[0].name}`;
+  return (
+    activityTypes[activities[0].type] +
+    " " +
+    activity +
+    `${activities.length > 1 ? ` +${activities.length - 1}` : ""}`
+  );
 };

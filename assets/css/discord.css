@@ -1,18 +1,25 @@
 #discord-container {
   display: grid;
   user-select: none;
-  grid-template-columns: 80px auto;
+  grid-template-columns: 80px min-content auto;
   padding: 0 10px;
-  margin: 0 10px;
+  margin: 0 auto;
   background-color: rgba(123, 68, 225, 0.2);
-  outline: 1px solid rgb(var(--fg, #35105d));
-  box-shadow: 0 0 10px rgb(var(--fg, #9d2c2c));
+  outline: 1px solid rgb(var(--fg, 53, 16, 93));
+  box-shadow: 0 0 10px rgb(var(--fg, 157, 44, 44));
   border-radius: 8px;
   height: 80px;
   position: relative;
-  margin-bottom: 10px;
-  width: min(600px, 60%);
+  width: min(500px, 92vw);
   align-self: center;
+}
+
+#activity-image {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
 }
 
 #discord-body {
@@ -21,6 +28,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-inline-start: 12px;
+  position: relative;
+  min-width: 0;
 }
 
 #discord-pfp-container {
@@ -44,32 +54,78 @@
 
 #discord-indicator {
   position: absolute;
-  bottom: -10px;
+  bottom: -14px;
   right: 0;
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  border: 3px solid rgb(var(--fg, #d3d3d3));
+  border: 1px solid rgb(var(--bg, 17, 18, 19));
 }
 
 #discord-username {
-  font-size: 1em;
-  color: rgb(var(--fg, #d3d3d3));
-  font-weight: bold;
-  padding: 0 !important;
+  font-family: "Sakura", sans-serif;
+  color: rgb(var(--fg, 211, 211, 211));
+  font-weight: bolder;
+  position: absolute;
+  top: 10px;
+  font-size: 1.25em;
+  transform: scaleY(0.8);
+  background: linear-gradient(
+    to bottom right,
+    rgb(188, 39, 39) 20%,
+    rgb(111, 107, 100) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #discord-activity {
   font-size: 0.9em;
-  color: rgb(var(--fg, #d3d3d3));
-  padding: 0;
+  color: rgb(var(--fg, 211, 211, 211));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
+  bottom: 16px;
+  position: absolute;
 }
 
-#discord-status {
-  font-size: 0.8em;
+@media screen and (max-width: 768px) {
+  #discord-container {
+    grid-template-columns: 64px min-content auto;
+    height: 72px;
+    padding: 0 8px;
+  }
+
+  #discord-pfp {
+    width: 52px;
+    height: 52px;
+  }
+
+  #discord-pfp-container {
+    height: 72px;
+  }
+
+  #discord-body {
+    height: 72px;
+    margin-inline-start: 12px;
+  }
+
+  #discord-username {
+    font-size: 1.25em;
+    top: 10px;
+  }
+
+  #discord-activity {
+    font-size: 0.82em;
+    bottom: 12px;
+  }
+
+  #activity-image img {
+    max-width: 40px;
+    max-height: 40px;
+  }
 }
 
 .indicator.online {
@@ -80,4 +136,7 @@
 }
 .indicator.dnd {
   background-color: rgb(240, 71, 71);
+}
+.indicator.offline {
+  background-color: rgb(116, 127, 141);
 }

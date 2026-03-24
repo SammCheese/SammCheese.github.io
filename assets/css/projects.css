@@ -19,12 +19,13 @@
 }
 
 .subcategory {
-  h1,
-  h2 {
-    text-align: center;
-    display: block;
-  }
   color: white;
+}
+
+.subcategory h1,
+.subcategory h2 {
+  text-align: center;
+  display: block;
 }
 
 .projects-collection {
@@ -57,6 +58,7 @@
 }
 
 a#back {
+  display: flex;
   width: 26px;
   height: 20px;
   animation: fadeInProjects;
@@ -126,8 +128,8 @@ a#back {
 }
 
 .project-box-linker > h3 {
-  fill: darkslategray;
-  transition: 0.2s fill;
+  color: darkslategray;
+  transition: 0.2s color;
 }
 
 .project-box-body {
@@ -139,7 +141,7 @@ a#back {
   padding: 1.5em;
   justify-content: center;
   align-items: center;
-  height: 30%;
+  min-height: 150px;
   position: relative;
   color: whitesmoke;
   background-color: #5865f2;
@@ -147,11 +149,12 @@ a#back {
 .project-box-body a {
   color: whitesmoke;
   text-decoration: underline;
-  &:hover {
-    color: lightgray;
-  }
+}
+
+.project-box-body a:hover {
+  color: lightgray;
 }
 
 .project-box {
-  background-color: rgb(var(--bg, #111213));
+  background-color: rgb(var(--bg, 17, 18, 19));
 }
