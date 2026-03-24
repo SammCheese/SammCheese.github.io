@@ -205,7 +205,7 @@ const makeStatusString = (activities, status, state) => {
   if (status === "dnd") return "Do Not Disturb";
   if (status === "idle") return "Idle";
   if (status === "offline") return "Offline";
-  return state || "online";
+  return "online";
 };
 
 const makeActivityString = (activities) => {
