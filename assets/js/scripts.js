@@ -1,4 +1,4 @@
-const API = "https://api.lanyard.rest/v1/users/372148345894076416";
+const API = "wss://api.lanyard.rest/socket";
 const DISCORD_COLLECTIBLES_API =
   "https://cdn.discordapp.com/assets/collectibles/";
 const pages = {
@@ -7,8 +7,10 @@ const pages = {
   contributions: "/templates/contributions.html",
   selection: "/templates/selection.html",
 };
+const USERID = "372148345894076416";
 
 let interval;
+let socket;
 
 const navigate = async (page) => {
   document
@@ -30,16 +32,6 @@ const navigate = async (page) => {
   return;
 };
 
-window.onload = () => {
-  if (window.location.hash) {
-    hashChangeHandler();
-  } else {
-    navigate("selection");
-  }
-  resetInterval();
-  refreshDiscordStatus();
-};
-
 const hashChangeHandler = () => {
   const page = window.location.hash.substring(1);
   if (pages[page]) {
@@ -51,24 +43,48 @@ const hashChangeHandler = () => {
 
 window.addEventListener("hashchange", hashChangeHandler);
 
-const resetInterval = () => {
-  if (interval) clearInterval(interval);
-  interval = setInterval(refreshDiscordStatus, 60000);
+window.onload = () => {
+  if (window.location.hash) {
+    hashChangeHandler();
+  } else {
+    navigate("selection");
+  }
+  // Start Websocket
+  if (!socket) {
+    socket = new WebSocket(API);
+    socket.onmessage = socketHandler;
+    socket.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+  }
 };
 
-const refreshDiscordStatus = async () => {
-  try {
-    const response = await fetch(API);
-    const result = await response.json();
-
-    if (!result || !result.data) {
-      console.error("Invalid data received from API");
-      return;
+const keepAlive = (intervalTime) => {
+  if (interval) clearInterval(interval);
+  interval = setInterval(() => {
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(JSON.stringify({ op: 3 }));
+    } else {
+      clearInterval(interval);
     }
+  }, intervalTime);
+};
 
-    updateDiscordHtml(result.data);
-  } catch (error) {
-    console.error("Error fetching Discord status:", error);
+const socketHandler = (event) => {
+  const data = JSON.parse(event.data);
+
+  switch (data.op) {
+    case 0:
+      if (data.t === "INIT_STATE" || data.t === "PRESENCE_UPDATE") {
+        updateDiscordHtml(data.d);
+      }
+      break;
+    case 1:
+      keepAlive(data.d.heartbeat_interval);
+      socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: USERID } }));
+      break;
+    default:
+      break;
   }
 };
 
@@ -82,11 +98,11 @@ const activityTypes = {
 };
 
 const updateDiscordHtml = (data) => {
+  const container = document.querySelector("#discord-container");
   if (!data) {
-    console.error("No data");
+    container.style.display = "none";
     return;
   }
-  const container = document.querySelector("#discord-container");
   replaceData(container, data);
 };
 
@@ -141,6 +157,10 @@ const replaceData = (elem, data) => {
       const activityImage = getActivityDetails(data.activities);
       const parent = document.createElement("div");
       parent.style.position = "relative";
+      parent.style.width = "56px";
+      parent.style.height = "56px";
+      parent.style.alignSelf = "center";
+      parent.style.alignContent = "center";
       if (!activityImage) return parent;
       const img = document.createElement("img");
       img.src = activityImage.url;
